@@ -1,0 +1,92 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ee="http://schemas.microsoft.com/expression/2010/effects" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="HostedNetwork.MainWindow"
+        Title="Virtual AP" Height="388.4" Width="625.8" Loaded="Window_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="White" Foreground="Black">
+    <Window.Resources>
+        <Storyboard x:Key="VirtualAP">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource VirtualAP}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid>
+        <TabControl Height="293.2" Margin="10,56,14.4,0" VerticalAlignment="Top" TabStripPlacement="Left">
+            <TabItem Background="#FF86BEE1">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Height="80">
+                        <Image Source="gear67.png" Height="50.4" Width="44.4" Margin="0,0,16,0" />
+                        <TextBlock Text="Configuration" Margin="0,0,0,1" VerticalAlignment="Center" />
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid x:Name="grConfig" Background="White">
+                    <Button x:Name="btnStart" Content="Start AP" HorizontalAlignment="Left" Margin="91.734,219.732,0,0" VerticalAlignment="Top" Width="272.333" Height="35.427" BorderBrush="{x:Null}" Background="#FF79BE5E" Foreground="White" Cursor="Hand" Click="btnStart_Click"/>
+                    <TextBlock x:Name="tbNetworkState" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status: Unknown" VerticalAlignment="Top" Margin="10,10,0,0" Height="37" Width="319"/>
+                    <CheckBox x:Name="chkAPAllowed" Content="AP enabled" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="334,12,0,0" Checked="chkAPAllowed_Checked" Unchecked="chkAPAllowed_Unchecked"/>
+                    <TextBox x:Name="txtSSID" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="AP" VerticalAlignment="Top" Width="166" Margin="137,71,0,0" TextChanged="txtSSID_TextChanged" LostFocus="txtSSID_LostFocus"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="AP Name:" VerticalAlignment="Top" Margin="80,74,0,0"/>
+                    <TextBox x:Name="txtKey" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="12345678" VerticalAlignment="Top" Width="166" Margin="137,112,0,0" TextChanged="txtKey_TextChanged" LostFocus="txtKey_LostFocus"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Key:" VerticalAlignment="Top" Margin="103,113,0,0" RenderTransformOrigin="2.601,0.533"/>
+                    <ComboBox x:Name="cmbDevice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="166" Margin="137,153,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Device with internet:" VerticalAlignment="Top" Margin="17,153,0,0"/>
+                    <Button x:Name="btnRefreshNetworkDevices" HorizontalAlignment="Left" Margin="309,145,0,0" VerticalAlignment="Top" Width="41" BorderBrush="{x:Null}" Height="37" Background="#FF35BBC9" Click="btnRefreshNetworkDevices_Click">
+                        <Image Height="22.133" Width="36" Source="refresh4.png"/>
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem Background="#FF86BEE1">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Height="80">
+                        <Image Source="multiple25.png" Height="50.4" Width="44.4" Margin="0,0,16,0" />
+                        <TextBlock Text="Users" Margin="0,0,0,1" VerticalAlignment="Center" />
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Connected Users:" VerticalAlignment="Top" Margin="10,10,0,0"/>
+                    <TextBlock x:Name="tbMacDownload" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Maclist dowload..." VerticalAlignment="Top" Margin="320.37,13.01,0,0"/>
+                    <StackPanel x:Name="peerPanel" HorizontalAlignment="Left" Height="236.2" Margin="10,41,0,0" VerticalAlignment="Top" Width="425.957" Background="#FFEFFBFF" CanVerticallyScroll="True"/>
+                    <ed:Arc x:Name="pbProgressArc" ArcThickness="1" ArcThicknessUnit="Percent" EndAngle="1" Fill="#FF6EB474" HorizontalAlignment="Left" Height="31" Margin="275.103,5,0,0" Stretch="None" StartAngle="-360" VerticalAlignment="Top" Width="40.267"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Background="#FF86BEE1">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Height="80">
+                        <Image Source="info27.png" Height="50.4" Width="44.4" Margin="0,0,16,0" />
+                        <TextBlock Text="About" Margin="0,0,0,1" VerticalAlignment="Center" />
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid Background="White">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Virtual AP" VerticalAlignment="Top" Margin="10,10,0,0" FontSize="32"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Author: Aleksandar Panić" VerticalAlignment="Top" Margin="10,52.563,0,0" FontSize="21.333"/>
+                    <TextBlock x:Name="lblVersion" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Version:" VerticalAlignment="Top" Margin="10,255.92,0,0" FontSize="16"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="This program works on Windows 7 and up." VerticalAlignment="Top" Margin="10,94.163,0,0" FontSize="16"/>
+                </Grid>
+            </TabItem>
+
+
+        </TabControl>
+        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Virtual AP" VerticalAlignment="Top" Margin="10,10,454.933,0" FontSize="26.667" FontWeight="Bold">
+            <TextBlock.Effect>
+                <ee:BloomEffect BloomIntensity="36.6" BaseSaturation="0.68" BaseIntensity="1" BloomSaturation="0.46" Threshold="0.5"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBlock x:Name="textBlock_Copy" TextWrapping="Wrap" Text="by Aleksandar Panic" VerticalAlignment="Top" Margin="164.867,21.51,229.666,0" FontSize="16" FontWeight="Bold" Foreground="#FF3A7048">
+            <TextBlock.Effect>
+                <ee:BloomEffect BloomIntensity="36.6" BaseSaturation="0.68" BaseIntensity="1" BloomSaturation="0.46" Threshold="0.5"/>
+            </TextBlock.Effect>
+        </TextBlock>
+
+    </Grid>
+</Window>
+
+ 
