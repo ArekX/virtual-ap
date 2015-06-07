@@ -89,9 +89,7 @@ namespace HostedNetwork.Wlan
             HRDSSS = 5,
             ERP = 6,
             HT = 7,
-            VHT = 8,
-            IHVStart = 0x80000000,
-            IHVEnd = 0xffffffff
+            VHT = 8
         }
 
         /// <summary>
